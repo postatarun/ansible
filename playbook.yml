@@ -1,0 +1,9 @@
+---
+- name: Example of playbook for GIT hub and Tower
+  hosts: all
+  become: true
+  tasks:
+  - name: create directory
+    file:
+      path: /tmp/git_tower
+      state: directory
