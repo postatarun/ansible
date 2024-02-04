@@ -3,11 +3,7 @@
   hosts: all
   become: true
   tasks:
-  - name: install httpd
-    yum:
-      name: httpd
-      state: installed
-  - name: restart httpd
-    service:
-      name: httpd
-      state: restarted
+  - name: create directory
+    file:
+      path: /tmp/new_tower_dir
+      state: directory
