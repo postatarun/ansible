@@ -1,0 +1,13 @@
+---
+- name: Example of new playbook for GIT hub and Tower
+  hosts: all
+  become: true
+  tasks:
+  - name: install httpd
+    yum:
+      name: httpd
+      state: installed
+  - name: restart httpd
+    service:
+      name: httpd
+      state: restarted
