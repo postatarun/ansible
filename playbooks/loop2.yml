@@ -1,0 +1,11 @@
+---
+- name: Playbook for loop
+  hosts: all
+  vars_files:
+    - loop-var1.yml
+  tasks:
+    - name: create users using loop
+      ansible.builtin.user:
+        name: "{{ item.user }}"
+        comment: "{{ item.comment }}"
+      loop: "{{ users_lists }}"

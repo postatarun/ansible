@@ -1,0 +1,9 @@
+---
+- name: playbook for multiple conditions
+  hosts: all
+  tasks:
+    - name: task to create user
+      user:
+        name: sudhir
+        state: present
+      when: person_name is not defined

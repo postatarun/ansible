@@ -1,0 +1,29 @@
+---
+- name: First play to create user
+  hosts: asia
+  tasks:
+    - name: create development group
+      group:
+        name: development
+        state: present
+
+    - name: Create user task
+      user:
+        name: ram
+        state: present
+        uid: 1050
+        groups: development
+
+- name: Second play to install nginx
+  hosts: us
+  tasks:
+    - name: Installing nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Restarting nginx service
+      service:
+        name: nginx
+        state: restarted
+        enabled: yes

@@ -1,0 +1,14 @@
+---
+- name: playbook for loop
+  hosts: all
+  tasks:
+    - name: creare a list of users using loop
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - sunil
+        - pankaj
+        - grish
+        - suman
+        - tej

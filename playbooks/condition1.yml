@@ -1,0 +1,9 @@
+---
+- name: playbook for condition
+  hosts: all
+  tasks:
+    - name: create a user on node1
+      ansible.builtin.user:
+        name: ajay
+        state: present
+      when: ansible_facts.hostname == "node1"

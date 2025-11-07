@@ -1,0 +1,22 @@
+---
+- name: install and configure apache server
+  hosts: node1,node2,node3
+  tasks:
+    - name: install apache server
+      yum:
+        name: httpd
+        state: present
+      notify: restart web server
+
+    - name: create index.html file
+      lineinfile:
+        path: /var/www/html/index.html
+        create: yes
+        line: This is Arun Bansal webpage.
+
+  handlers:
+    - name: restart web server
+      service:
+        name: httpd
+        state: restarted
+        enabled: true

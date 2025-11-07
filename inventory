@@ -1,0 +1,13 @@
+[india]
+node1
+
+[us]
+node2
+
+[china]
+node3
+
+[asia:children]
+india
+china
+

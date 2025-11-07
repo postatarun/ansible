@@ -1,0 +1,11 @@
+---
+- name: playbook for loop with external file variables
+  hosts: node1
+  vars_files:
+    - loop-vars.yml
+  tasks:
+    - name: task to create use using loop
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ users_lists }}"

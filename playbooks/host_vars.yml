@@ -1,0 +1,10 @@
+---
+- name: playbook to learn host_vars variables
+  hosts: all
+  tasks:
+    - name: task to create user - group vars = {{ another_user }}
+      user:
+#        name: "{{ specific_user }}"
+        name: "{{ another_user }}"
+        state: present
+

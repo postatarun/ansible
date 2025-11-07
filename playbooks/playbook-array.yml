@@ -1,0 +1,37 @@
+---
+- name: playbook for array variables
+  hosts: all
+  vars_files:
+    - array.yml
+  tasks:
+    - name: Task to create devlopment group
+      group:
+        name: "{{ users.development.group_1 }}"
+        state: present
+    - name: Task to create testing group
+      group:
+        name: "{{ users.testing.group_1 }}"
+        state: present
+    - name: Task to create production group
+      group:
+        name: "{{ users.production.group_1 }}"
+        state: present
+
+    - name: Task to create development user with comment
+      user:
+        name: "{{ users.development.user_1 }}"
+        groups: "{{ users.development.group_1 }}"
+        comment: "{{ users.development.comment_1 }}"
+        state: present
+    - name: Task to create testing user with comment
+      user:
+        name: "{{ users.testing.user_1 }}"
+        groups: "{{ users.testing.group_1 }}"
+        comment: "{{ users.testing.comment_1 }}"
+        state: present
+    - name: Task to create production user with comment
+      user:
+        name: "{{ users.production.user_1 }}"
+        groups: "{{ users.production.group_1 }}"
+        comment: "{{ users.production.comment_1 }}"
+        state: present

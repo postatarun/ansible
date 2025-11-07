@@ -1,0 +1,7 @@
+---
+- name: Playbook to learn facts
+  hosts: node1
+  tasks:
+    - name: task to show facts using debug module
+      debug:
+        var: ansible_facts.hostname

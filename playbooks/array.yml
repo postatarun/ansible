@@ -1,0 +1,14 @@
+users:
+  development:
+      user_1: aadarsh
+      group_1: developer
+      comment_1: Development Team user
+  testing:
+      user_1: vinay
+      group_1: tester
+      comment_1: Testing Team user
+  production:
+      user_1: avy
+      group_1: producer
+      comment_1: Production Team user
+

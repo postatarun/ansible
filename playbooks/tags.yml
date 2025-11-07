@@ -1,0 +1,19 @@
+---
+- name: Playbook for tags
+  hosts: all
+  tasks:
+    - name: create user vinay
+      user:
+        name: vinay
+        state: present
+      tags: vinay
+    - name: create user akash
+      user:
+        name: akash
+        state: present
+      tags: akash
+    - name: create user john
+      user:
+        name: john
+        state: present
+      tags: john

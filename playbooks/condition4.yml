@@ -1,0 +1,9 @@
+---
+- name: playbook for multiple conditions
+  hosts: all
+  tasks:
+    - name: task to create user
+      user:
+        name: abhi
+        state: present
+      when: ansible_facts.hostname == "node1" or ansible_facts.default_ipv4.address == "192.168.1.112"
