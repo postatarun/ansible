@@ -1,6 +1,4 @@
 ---
-
-```markdown
 # 🧩 Ansible Automation Playbooks
 
 This repository contains a collection of **Ansible playbooks** to automate common Linux system administration and DevOps tasks such as **user management**, **Apache web server setup**, and **Docker installation**.
@@ -137,7 +135,6 @@ Feel free to fork this repository and raise a pull request.
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE).
 
 ---
 
@@ -150,6 +147,6 @@ This project is licensed under the [MIT License](LICENSE).
 ### ✨ Author
 
 **Arun Bansal**
-🔗 [GitHub](https://github.com/<your-username>) | 💼 Senior DevOps Engineer
+🔗 [GitHub](https://github.com/postatarun) | 💼 Senior DevOps Engineer
 
 ---
