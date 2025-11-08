@@ -1,5 +1,6 @@
 ---
 - name: Role for installation and configuration of apache web server
   hosts: all
+  gather_facts: true
   roles:
     - apache

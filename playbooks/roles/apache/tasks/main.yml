@@ -1,37 +1,50 @@
 ---
-- name: Install {{ service_name }} web server
-  yum:
-    name: "{{ service_name }}"
+- name: Install {{ service_name }} and {{ firewalld_service }} packages
+  ansible.builtin.yum:
+    name:
+      - "{{ service_name }}"
+      - "{{ firewalld_service }}"
     state: latest
-  notify: restart httpd
 
-- name: Install "{{ firewalld_service }}" service
-  yum:
-    name: "{{ firewalld_service }}"
-    state: latest
-  notify: firewalld config
-
-- name: start "{{ service_name }}" service
-  service:
-    name: "{{ service_name }}"
-    state: restarted
+- name: start {{ service_name }} and {{ firewalld_service }} service
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
     enabled: yes
+  loop:
+    - "{{ service_name }}"
+    - "{{ firewalld_service }}"
+
+- name: add various ports for {{ service_name }} in {{ firewalld_service }}
+  ansible.builtin.firewalld:
+    port: "{{ port_number }}/tcp"
+    permanent: true
+    immediate: true
+    state: enabled
+
+- name: create custom.conf file to {{ service_name }} configuration
+  ansible.builtin.template:
+    src: custom.conf.j2
+    dest: /etc/httpd/conf.d/custom.conf
 
 - name: create index.html file
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /var/www/html/index.html
     create: yes
-    line: This is a web server
+    line: This server hostname is "{{ ansible_facts.hostname }}"
 
-- name: firewalld config
-  service:
-    name: "{{ firewalld_service }}"
+- name: managing selinux for every host to run webserver
+  #community.general.seport:
+  ansible.builtin.seport:
+    ports: "{{ port_number }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  #  ansible.builtin.command:
+  # cmd: semanage port -a -t http_port_t -p tcp "{{ port_number }}"
+  #ignore_errors: true
+
+- name: restaring httpd service
+  ansible.builtin.service:
+    name: "{{ service_name }}"
     state: restarted
-    enabled: yes
-
-- name: firewalld config
-  firewalld:
-    service: http
-    permanent: yes
-    immediate: yes
-    state: enabled
