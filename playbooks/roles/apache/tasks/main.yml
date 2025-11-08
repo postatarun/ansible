@@ -34,15 +34,11 @@
     line: This server hostname is "{{ ansible_facts.hostname }}"
 
 - name: managing selinux for every host to run webserver
-  #community.general.seport:
   ansible.builtin.seport:
     ports: "{{ port_number }}"
     proto: tcp
     setype: http_port_t
     state: present
-  #  ansible.builtin.command:
-  # cmd: semanage port -a -t http_port_t -p tcp "{{ port_number }}"
-  #ignore_errors: true
 
 - name: restaring httpd service
   ansible.builtin.service:
