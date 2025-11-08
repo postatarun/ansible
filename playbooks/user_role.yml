@@ -1,0 +1,6 @@
+---
+- name: Playbook for user role
+  hosts: all
+  gather_facts: yes
+  roles:
+    - user

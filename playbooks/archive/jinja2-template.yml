@@ -1,0 +1,11 @@
+---
+- name: copying the file to node1 host
+  hosts: all
+  vars:
+    - candidate_name: Arun Bansal
+    - city: Noida
+  tasks:
+    - name: copy updated arun.txt file to node1 /tmp/ dir
+      template:
+        src: arun.txt.j2
+        dest: /tmp/arun.txt

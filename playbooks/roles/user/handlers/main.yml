@@ -1,0 +1,6 @@
+---
+- name: add user to wheel group
+  user:
+    name: "{{ user_name }}"
+    groups: "{{ sudo_group }}"
+    state: present
