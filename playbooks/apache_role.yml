@@ -1,0 +1,5 @@
+---
+- name: Role for installation and configuration of apache web server
+  hosts: all
+  roles:
+    - apache

@@ -1,0 +1,37 @@
+---
+- name: Install {{ service_name }} web server
+  yum:
+    name: "{{ service_name }}"
+    state: latest
+  notify: restart httpd
+
+- name: Install "{{ firewalld_service }}" service
+  yum:
+    name: "{{ firewalld_service }}"
+    state: latest
+  notify: firewalld config
+
+- name: start "{{ service_name }}" service
+  service:
+    name: "{{ service_name }}"
+    state: restarted
+    enabled: yes
+
+- name: create index.html file
+  lineinfile:
+    path: /var/www/html/index.html
+    create: yes
+    line: This is a web server
+
+- name: firewalld config
+  service:
+    name: "{{ firewalld_service }}"
+    state: restarted
+    enabled: yes
+
+- name: firewalld config
+  firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled

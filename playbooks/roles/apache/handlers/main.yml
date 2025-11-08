@@ -1,0 +1,7 @@
+---
+- name: restart httpd
+  service:
+    name: "{{ service_name }}"
+    state: restarted
+    enabled: yes
+
