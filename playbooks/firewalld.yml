@@ -1,0 +1,10 @@
+---
+- name: playbook to enable port 80 on managed hosts
+  hosts: all
+  tasks:
+    - name: adding port 80 in firewalld
+      firewalld:
+        service: http
+        permanent: yes
+        immediate: yes
+        state: enabled

@@ -1,0 +1,16 @@
+---
+- name: playbook for vault
+  hosts: all
+  vars_files:
+    - secret.txt
+  tasks:
+    - name: task to create group {{ group_name }}
+      group:
+        name: "{{ group_name }}"
+        state: present
+
+    - name: create user {{ user_name }} with group {{ group_name }}
+      user:
+        name: "{{ user_name }}"
+        state: present
+        groups: "{{ group_name }}"
